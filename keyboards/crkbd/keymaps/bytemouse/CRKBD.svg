@@ -138,7 +138,7 @@
 <rect x="383" y="189" width="55" height="45" rx="6" ry="6" class="" />
 <text x="410" y="211" text-anchor="middle" class="key-text">⎇⏎</text>
 <rect x="619" y="189" width="55" height="45" rx="6" ry="6" class="" />
-<text x="646" y="211" text-anchor="middle" class="key-text">␣</text>
+<text x="646" y="211" text-anchor="middle" class="key-text">⇧␣</text>
 <rect x="678" y="189" width="55" height="45" rx="6" ry="6" class="" />
 <text x="705" y="211" text-anchor="middle" class="key-text">⇧⌫</text>
 <rect x="737" y="189" width="55" height="45" rx="6" ry="6" class="" />
@@ -207,11 +207,11 @@
 <rect x="678" y="407" width="55" height="45" rx="6" ry="6" class="" />
 <text x="705" y="429" text-anchor="middle" class="key-text">²</text>
 <rect x="737" y="407" width="55" height="45" rx="6" ry="6" class="" />
-<text x="764" y="429" text-anchor="middle" class="key-text">⎙</text>
+<text x="764" y="429" text-anchor="middle" class="key-text">⌘</text>
 <rect x="796" y="407" width="55" height="45" rx="6" ry="6" class="" />
-<text x="823" y="429" text-anchor="middle" class="key-text">½</text>
+<text x="823" y="429" text-anchor="middle" class="key-text">⇧</text>
 <rect x="855" y="407" width="55" height="45" rx="6" ry="6" class="" />
-<text x="882" y="429" text-anchor="middle" class="key-text">⅓</text>
+<text x="882" y="429" text-anchor="middle" class="key-text">⎙</text>
 <rect x="914" y="407" width="55" height="45" rx="6" ry="6" class="" />
 <text x="941" y="429" text-anchor="middle" class="key-text">¼</text>
 <rect x="973" y="407" width="55" height="45" rx="6" ry="6" class="" />
@@ -223,7 +223,7 @@
 <rect x="383" y="456" width="55" height="45" rx="6" ry="6" class="" />
 <text x="410" y="478" text-anchor="middle" class="key-text"></text>
 <rect x="619" y="456" width="55" height="45" rx="6" ry="6" class="" />
-<text x="646" y="478" text-anchor="middle" class="key-text">⌦</text>
+<text x="646" y="478" text-anchor="middle" class="key-text"></text>
 <rect x="678" y="456" width="55" height="45" rx="6" ry="6" class="" />
 <text x="705" y="478" text-anchor="middle" class="key-text">⚙</text>
 <rect x="737" y="456" width="55" height="45" rx="6" ry="6" class="" />

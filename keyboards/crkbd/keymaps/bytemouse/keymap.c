@@ -24,6 +24,7 @@ enum plaid_keycodes {
 #define RAISEBSPC LT(_RAISE, KC_BSPC) // Raise+Backspace 
 #define LOWERTAB LT(_LOWER, KC_TAB)  // Lower+Tab
 #define ALTTPES LALT_T(KC_ESC)
+#define SHIFTSPACE LSFT_T(KC_SPC)
 #define ALTTPEN LT(_ADJUST, KC_ENT)
 #define N_PASTE LCTL(KC_V) // CTRL+V
 #define N_COPY LCTL(KC_C) // CTRL+C
@@ -78,7 +79,7 @@ KC_LSFT,    KC_Z,       KC_X,       KC_C,       KC_V,       KC_B,               
     //# │       │       │              ╭───────╮╰───────╯                                        ╰───────╯╭───────╮              │       │       │  
     //# ╰───────╯───────╯              │  Ctrl ╰───────╮                                          ╭───────╯   ⎇⎋  │              ╰───────╰───────╯  
     //#                                │       │   ⇩⭾  ╰───────╮                          ╭───────╯   ⇧⌫  │       │                                 
-    //#                                ╰───────╯       │   ⎇⏎  |                          |   ␣   │       ╰───────╯                                 
+    //#                                ╰───────╯       │   ⎇⏎  |                          |   ⇧␣  │       ╰───────╯                                 
     //#                                        ╰───────╯       |                          │       ╰───────╯                                         
     //#                                                ╰───────╯                          ╰───────╯                                                 
     //#                                                                                                                                             
@@ -86,7 +87,7 @@ KC_LSFT,    KC_Z,       KC_X,       KC_C,       KC_V,       KC_B,               
 DE_Z,       DE_K,       DE_DOT,     DE_O,       DE_COMM,    DE_Y,                                                                   DE_V,       DE_G,       DE_C,       DE_L,       DE_SS,      KC_BSPC,    
 KC_LGUI,    HMOD_GUI,   HMOD_ALT,   HMOD_SHIFT, HMOD_CTRL,  DE_U,                                                                   DE_D,       DE_T,       DE_R,       DE_N,       DE_S,       DE_F,       
 KC_LSFT,    DE_X,       DE_Q,       DE_ADIA,    DE_UDIA,    DE_ODIA,                                                                DE_B,       DE_P,       DE_W,       DE_M,       DE_J,       KC_RSFT,    
-                                                KC_LCTL,    LOWERTAB,   ALTTPEN,                                        KC_SPC,     RAISEBSPC,  ALTTPES                                                     
+                                                KC_LCTL,    LOWERTAB,   ALTTPEN,                                        SHIFTSPACE, RAISEBSPC,  ALTTPES                                                     
   ),
 
     //#                         ╭───────╮                                                                        ╭───────╮                          
@@ -96,22 +97,22 @@ KC_LSFT,    DE_X,       DE_Q,       DE_ADIA,    DE_UDIA,    DE_ODIA,            
     //# │       │   1   ╰───────╯  ⇤   ╰───────╯       │                                        │       ╰───────╯  ▽   ╰───────╯   0   │   ⌦   │  
     //# │       │       │   ⏯️   │       │  ⇥   ╰───────╯                                        ╰───────╯  ◁   │       │  △   │       │       │  
     //# ╰───────╯───────╯       ╰───────╯       │  ↶   │                                        │   Z   │       ╰───────╯       ╰───────╰───────╯  
-    //# │       │  🕪   ╰───────╯   ⏭️   ╰───────╯       │                                        │       ╰───────╯   ½   ╰───────╯  ▷   │  ⎋   │  
-    //# │       │       │   ⏮️   │       │   ⎘C  ╰───────╯                                        ╰───────╯   ⎙   │       │   ⅓   │       │       │  
+    //# │       │  🕪   ╰───────╯   ⏭️   ╰───────╯       │                                        │       ╰───────╯   ⇧   ╰───────╯  ▷   │  ⎋   │  
+    //# │       │       │   ⏮️   │       │   ⎘C  ╰───────╯                                        ╰───────╯  ⌘   │       │   ⎙   │       │       │  
     //# ╰───────╯───────╯       ╰───────╯       │   ⎘   │                                        │   ²   │       ╰───────╯       ╰───────╰───────╯  
     //# │       │  🕩   ╰───────╯       ╰───────╯       │                                        │       ╰───────╯       ╰───────╯   ¼   │       │  
     //# │       │       │              ╭───────╮╰───────╯                                        ╰───────╯╭───────╮              │       │       │  
     //# ╰───────╯───────╯              │       ╰───────╮                                          ╭───────╯       │              ╰───────╰───────╯  
     //#                                │       │       ╰───────╮                          ╭───────╯   ⚙   │       │                                 
-    //#                                ╰───────╯       │       |                          |   ⌦   │       ╰───────╯                                 
+    //#                                ╰───────╯       │       |                          |       │       ╰───────╯                                 
     //#                                        ╰───────╯       |                          │       ╰───────╯                                         
     //#                                                ╰───────╯                          ╰───────╯                                                 
     //#                                                                                                                                             
   [_LOWER] = LAYOUT_split_3x6_3(
 _______,    KC_1,       KC_2,       KC_3,       KC_4,       KC_5,                                                                   KC_6,       KC_7,       KC_8,       KC_9,       KC_0,       KC_DEL,     
 _______,    KC_VOLU,    KC_MPLY,    KC_HOME,    KC_END,     N_UNDO,                                                                 DE_Z,       KC_LEFT,    KC_DOWN,    KC_UP,      KC_RIGHT,   KC_ESC,     
-_______,    KC_VOLD,    KC_MPRV,    KC_MNXT,    N_COPY,     N_PASTE,                                                                DE_SUP2,    KC_PSCR,    ONEHALF,    ONETHIR,    ONEQUAR,    _______,    
-                                                _______,    _______,    _______,                                        KC_DEL,     ADJUST,     _______                                                     
+_______,    KC_VOLD,    KC_MPRV,    KC_MNXT,    N_COPY,     N_PASTE,                                                                DE_SUP2,    KC_LGUI,    KC_LSFT,    KC_PSCR,    ONEQUAR,    _______,    
+                                                _______,    _______,    _______,                                        _______,    ADJUST,     _______                                                     
   ),
 
     //#                         ╭───────╮                                                                        ╭───────╮                          
@@ -308,7 +309,7 @@ qmk-keyboard-format:json:begin
     "LAYER_KOY": "KOY",
     "LAYER_LOWER": "LOWER",
     "LAYER_RAISE": "RAISE",
-    "LAYER_ADJUST": "ADJUST"
+    "LAYER_ADJUST": "ADJUST",
     "KC_TRANS": "     ",
     "KC_A": "  A  ",
     "KC_B": "  B  ",
@@ -537,7 +538,9 @@ qmk-keyboard-format:json:begin
     "HMOD_ALT": "  ⎇A  ",
     "HMOD_SHIFT": "  ⇧E  ",
     "HMOD_CTRL": "  ^I  ",
-    "KC_BSPC": "  ⌫  "
+    "KC_BSPC": "  ⌫  ",
+    "SHIFTSPACE": "  ⇧␣ "
+
   }
 }
 qmk-keyboard-format:json:end
