@@ -264,6 +264,18 @@ qmk-keyboard-format:json:begin
         10,
         8
     ],
+     "svglayers": [
+        "_KOY",
+        "_LOWER",
+        "_RAISE",
+        "_ADJUST"
+    ],
+     "svgmapping": [
+        [  0,  1,  2,  3,  4,  5, -1, -1, -2, -1, -1,  6,  7,  8,  9, 10, 11 ],
+        [ 12, 13, 14, 15, 16, 17, -1, -1, -2, -1, -1, 18, 19, 20, 21, 22, 23 ],
+        [ 24, 25, 26, 27, 28, 29, -1, -1, -2, -1, -1, 30, 31, 32, 33, 34, 35 ],
+        [ -1, -1, -1, -1, 36, 37, 38, -1, -2, -1, 39, 40, 41, -1, -1, -1, -1 ]
+    ],
     "vizemits": [
         {"line": "[_QWERTY] = LAYOUT_split_3x6_3(", "layer": "_QWERTY"},
         {"line": "[_KOY] = LAYOUT_split_3x6_3(", "layer": "_KOY"},
@@ -293,6 +305,10 @@ qmk-keyboard-format:json:begin
         "    //#                                                                                                                                             "
     ],
   "vizsymbols": {
+    "LAYER_KOY": "KOY",
+    "LAYER_LOWER": "LOWER",
+    "LAYER_RAISE": "RAISE",
+    "LAYER_ADJUST": "ADJUST"
     "KC_TRANS": "     ",
     "KC_A": "  A  ",
     "KC_B": "  B  ",
