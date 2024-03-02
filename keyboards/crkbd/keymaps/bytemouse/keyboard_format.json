@@ -14,11 +14,11 @@
         8
     ],
     "vizemits": [
-        {"line": "[_QWERTY] = LAYOUT(", "layer": "_QWERTY"},
-        {"line": "[_KOY] = LAYOUT(", "layer": "_KOY"},
-        {"line": "[_LOWER] = LAYOUT(", "layer": "_LOWER"},
-        {"line": "[_RAISE] = LAYOUT(", "layer": "_RAISE"},
-        {"line": "[_ADJUST] = LAYOUT(", "layer": "_ADJUST"}
+        {"line": "[_QWERTY] = LAYOUT_split_3x6_3( ", "layer": "_QWERTY"},
+        {"line": "[_KOY] = LAYOUT_split_3x6_3( ", "layer": "_KOY"},
+        {"line": "[_LOWER] = LAYOUT_split_3x6_3( ", "layer": "_LOWER"},
+        {"line": "[_RAISE] = LAYOUT_split_3x6_3( ", "layer": "_RAISE"},
+        {"line": "[_ADJUST] = LAYOUT_split_3x6_3( ", "layer": "_ADJUST"}
     ],
     "vizline": "//#",
     "vizboard": [
