@@ -31,7 +31,6 @@ enum plaid_keycodes {
 #define N_CUT LCTL(KC_X) // CTRL+X
 #define N_UNDO LCTL(DE_Z) // CTRL+Z
 #define N_REDO LCTL(DE_Y) // CTRL+Y
-
 // Home row mods GASC
 #define HMOD_GUI LGUI_T(DE_H)
 #define HMOD_ALT LALT_T(DE_A)
@@ -128,7 +127,7 @@ _______,    KC_VOLD,    KC_MPRV,    KC_MNXT,    N_COPY,     N_PASTE,            
     //# │       │   #   ╰───────╯       ╰───────╯       │                                        │       ╰───────╯       ╰───────╯   ;   │       │  
     //# │       │       │              ╭───────╮╰───────╯                                        ╰───────╯╭───────╮              │       │       │  
     //# ╰───────╯───────╯              │       ╰───────╮                                          ╭───────╯       │              ╰───────╰───────╯  
-    //#                                │       │   ⚙   ╰───────╮                          ╭───────╯       │       │                                 
+    //#                                │       │  ⎇   ╰───────╮                          ╭───────╯       │       │                                 
     //#                                ╰───────╯       │       |                          |       │       ╰───────╯                                 
     //#                                        ╰───────╯       |                          │       ╰───────╯                                         
     //#                                                ╰───────╯                          ╰───────╯                                                 
@@ -137,7 +136,7 @@ _______,    KC_VOLD,    KC_MPRV,    KC_MNXT,    N_COPY,     N_PASTE,            
 _______,    DE_EURO,    DE_UNDS,    DE_LBRC,    DE_RBRC,    DE_CIRC,                                                                DE_EXLM,    DE_LABK,    DE_RABK,    DE_EQL,     DE_AMPR,    _______,    
 _______,    DE_BSLS,    DE_SLSH,    DE_LCBR,    DE_RCBR,    DE_ASTR,                                                                DE_QUES,    DE_LPRN,    DE_RPRN,    DE_MINS,    DE_COLN,    DE_AT,      
 _______,    DE_HASH,    DE_DLR,     DE_PIPE,    DE_TILD,    DE_ACUT,                                                                DE_PLUS,    DE_PERC,    DE_DQUO,    DE_QUOT,    DE_SCLN,    _______,    
-                                                _______,    ADJUST,     _______,                                        _______,    _______,    _______                                                     
+                                                _______,    KC_LALT,    _______,                                        _______,    _______,    _______                                                     
   ),
 
     //#                         ╭───────╮                                                                        ╭───────╮                          
