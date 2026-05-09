@@ -207,12 +207,6 @@ bool caps_word_press_user(uint16_t keycode) {
 }
 
 
-// ─── Tri-layer ──────────────────────────────────────────────────────────────
-// Holding both LOWER and RAISE auto-activates _ESP for one-key Spanish accents.
-layer_state_t layer_state_set_user(layer_state_t state) {
-    return update_tri_layer_state(state, _LOWER, _RAISE, _ESP);
-}
-
 void keyboard_post_init_user(void) {
     // Linux: Ctrl+Shift+U then hex (works in IBus/X11/most Wayland).
     // Change to UNICODE_MODE_MACOS / UNICODE_MODE_WINCOMPOSE if needed.

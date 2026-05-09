@@ -30,7 +30,11 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
 // Hold-tap tuning
 #define TAPPING_TERM 200
-#define FLOW_TAP_TERM 150  // suppress hold during fast typing (Flow Tap)
+// Flow Tap was making layer-tap thumbs (LOWERTAB/RAISEBSPC) too sticky:
+// holding the thumb right after typing would tap (Tab/BSpc) instead of
+// activating the layer, breaking same-hand layer shortcuts (numbers,
+// copy/paste). Chordal Hold alone is enough HRM protection here.
+// #define FLOW_TAP_TERM 150
 
 // Sync WPM and layer state from master half to slave for the OLED.
 #define SPLIT_WPM_ENABLE
