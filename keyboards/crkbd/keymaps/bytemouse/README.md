@@ -49,6 +49,22 @@ QMK features worth adding later, in rough order of payoff:
 6. [**Mouse Keys**](https://docs.qmk.fm/features/mouse_keys) — keyboard-driven cursor and scroll, niche unless skipping the trackpad matters.
 7. [**Speculative Hold**](https://github.com/getreuer/qmk-modules/tree/main/speculative_hold) — emits the tap immediately and rolls back on hold, eliminating HRM latency at the cost of brief flicker; experimental.
 
+## Size optimization (if needed)
+
+Default-on QMK features that this keymap doesn't use, with rough flash savings if disabled:
+
+| Setting | Where | Saves | What it disables |
+|---|---|---|---|
+| `MAGIC_ENABLE = no` | `rules.mk` | ~500 B | `MAGIC_*` runtime config keys (NKRO/Ctrl-GUI swap, etc.) |
+| `SPACE_CADET_ENABLE = no` | `rules.mk` | ~150 B | Tap LShift → `(`, tap RShift → `)` |
+| `GRAVE_ESC_ENABLE = no` | `rules.mk` | ~50 B | `KC_GESC` (Esc that becomes `` ` `` when shifted) |
+| `RGB_MATRIX_ENABLE = no` | `rules.mk` | ~varies | Per-key RGB scheduler (separate from RGBLIGHT) |
+| `#define NO_ACTION_ONESHOT` | `config.h` | ~100 B | One-shot key state machine |
+| `#define LAYER_STATE_8BIT` | `config.h` | ~50 B | Reduces layer state from 32-bit to 8-bit (fine, you have 5 layers) |
+| `#undef LOCKING_SUPPORT_ENABLE`<br>`#undef LOCKING_RESYNC_ENABLE` | `config.h` | small | Cherry MX Lock switch support |
+
+**Don't disable** `EXTRAKEY_ENABLE` (kills volume/media keys) or `LTO_ENABLE` (single biggest saver).
+
 ## Build
 
 ```sh

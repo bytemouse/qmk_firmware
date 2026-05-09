@@ -8,3 +8,4 @@ LTO_ENABLE         = yes
 # Hold-tap improvements
 CHORDAL_HOLD       = yes
 CAPS_WORD_ENABLE   = yes
+RGB_MATRIX_ENABLE  = no
