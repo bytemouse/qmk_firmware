@@ -108,7 +108,6 @@ parse_config:
     DE_GRV:  "`"
     DE_SUP2: "²"
     DE_SUP3: "³"
-    DE_GRV:  "`"
     KC_WBAK: "◀Back"
     KC_WFWD: "Fwd▶"
     KC_BSPC: "⌫"

@@ -1,6 +1,6 @@
 layout: {qmk_keyboard: crkbd/rev1, layout_name: LAYOUT_split_3x6_3}
 layers:
-  QWERTY:
+  KOY:
   - Z
   - K
   - .
@@ -43,7 +43,7 @@ layers:
   - {t: ␣, h: ESP}
   - {t: ⌫, h: ▲Raise}
   - {t: ⎋, h: ⎇}
-  KOY:
+  LOWER:
   - {t: ▽, type: trans}
   - '1'
   - '2'
@@ -86,7 +86,7 @@ layers:
   - {t: ▽, type: trans}
   - {t: ●Adjust, type: layer}
   - {t: ▽, type: trans}
-  LOWER:
+  RAISE:
   - {t: ▽, type: trans}
   - €
   - _
@@ -129,7 +129,7 @@ layers:
   - {t: ▽, type: trans}
   - {t: ▽, type: trans}
   - {t: ▽, type: trans}
-  RAISE:
+  ESP:
   - {t: ▽, type: trans}
   - {t: ▽, type: trans}
   - {t: ▽, type: trans}

@@ -23,7 +23,7 @@ TMP_JSON=$(mktemp --suffix=.json)
 trap 'rm -f "$TMP_JSON"' EXIT
 qmk c2json --no-cpp -kb crkbd/rev1 -km bytemouse "$KEYMAP_C" -o "$TMP_JSON" >/dev/null 2>&1
 keymap -c "$DRAW_CONFIG" parse -q "$TMP_JSON" \
-    --layer-names QWERTY KOY LOWER RAISE ADJUST \
+    --layer-names KOY LOWER RAISE ESP ADJUST \
     -o "$KEYMAP_YAML" >/dev/null
 keymap -c "$DRAW_CONFIG" draw "$KEYMAP_YAML" > "$KEYMAP_SVG"
 git add "$KEYMAP_YAML" "$KEYMAP_SVG"
