@@ -9,3 +9,4 @@ LTO_ENABLE         = yes
 CHORDAL_HOLD       = yes
 CAPS_WORD_ENABLE   = yes
 RGB_MATRIX_ENABLE  = no
+WPM_ENABLE         = yes
