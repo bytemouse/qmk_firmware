@@ -1,0 +1,38 @@
+# Starter German autocorrect dictionary for QMK.
+# Format: "typo -> correction" per line. Lines starting with # are comments.
+# Keep ASCII-only — corrections are sent via send_string and umlauts can't
+# be emitted that way reliably. Avoid <5-char typos (false triggers) and
+# typos that are substrings of valid words.
+
+# German transposition typos
+nciht -> nicht
+nihct -> nicht
+imemr -> immer
+shcon -> schon
+hcier -> hier
+durhc -> durch
+ducrh -> durch
+werdne -> werden
+machne -> machen
+mahcen -> machen
+geanu -> genau
+warhscheinlich -> wahrscheinlich
+
+# English programmer typos (curated subset of QMK defaults)
+teh -> the
+recieve -> receive
+seperate -> separate
+definately -> definitely
+occured -> occurred
+retrun -> return
+reuslt -> result
+swithc -> switch
+swtich -> switch
+fitler -> filter
+lenght -> length
+widht -> width
+heigth -> height
+namesapce -> namespace
+overide -> override
+postion -> position
+udpate -> update

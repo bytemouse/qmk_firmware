@@ -39,6 +39,12 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 #define SPLIT_MODS_ENABLE
 #define SPLIT_LED_STATE_ENABLE
 
+// Space-saving (~150 B): we have ≤8 layers, no one-shot keys, no Cherry MX Lock.
+#define LAYER_STATE_8BIT
+#define NO_ACTION_ONESHOT
+#undef  LOCKING_SUPPORT_ENABLE
+#undef  LOCKING_RESYNC_ENABLE
+
 #ifdef RGBLIGHT_ENABLE
     #define RGBLIGHT_EFFECT_BREATHING
     #define RGBLIGHT_EFFECT_RAINBOW_MOOD

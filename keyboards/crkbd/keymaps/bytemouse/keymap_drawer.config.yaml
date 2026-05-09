@@ -108,6 +108,12 @@ parse_config:
     DE_GRV:  "`"
     DE_SUP2: "²"
     DE_SUP3: "³"
+    DE_GRV:  "`"
+    KC_WBAK: "◀Back"
+    KC_WFWD: "Fwd▶"
+    KC_BSPC: "⌫"
+    AC_TOGG: "AutoCx"
+    CW_TOGG: "CapsW"
   raw_binding_map:
     LOWER:      {t: ▼Lower,  type: layer}
     RAISE:      {t: ▲Raise,  type: layer}
@@ -116,7 +122,16 @@ parse_config:
     RAISEBSPC:  {t: "⌫", h: ▲Raise}
     ALTTPEN:    {t: "⏎", h: ●Adjust}
     ALTTPES:    {t: "⎋", h: "⎇"}
-    SHIFTSPACE: {t: "␣", h: "⇧"}
+    ESPSPACE:   {t: "␣", h: ESP}
+    "LGUI(KC_L)": "🔒"
+    ESP_A: "á"
+    ESP_E: "é"
+    ESP_I: "í"
+    ESP_O: "ó"
+    ESP_U: "ú"
+    ESP_NN: "ñ"
+    ESP_IEX: "¡"
+    ESP_IQU: "¿"
     HMOD_GUI:   {t: H, h: ⌘}
     HMOD_ALT:   {t: A, h: ⎇}
     HMOD_SHIFT: {t: E, h: ⇧}

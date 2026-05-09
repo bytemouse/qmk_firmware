@@ -40,7 +40,7 @@ layers:
   - ^
   - {t: ⭾, h: ▼Lower}
   - {t: ⏎, h: ●Adjust}
-  - ESPSPACE
+  - {t: ␣, h: ESP}
   - {t: ⌫, h: ▲Raise}
   - {t: ⎋, h: ⎇}
   KOY:
@@ -133,25 +133,25 @@ layers:
   - {t: ▽, type: trans}
   - {t: ▽, type: trans}
   - {t: ▽, type: trans}
-  - ESP O
+  - ó
   - {t: ▽, type: trans}
   - {t: ▽, type: trans}
-  - ESP IEX
-  - {t: ▽, type: trans}
-  - {t: ▽, type: trans}
-  - {t: ▽, type: trans}
+  - ¡
   - {t: ▽, type: trans}
   - {t: ▽, type: trans}
   - {t: ▽, type: trans}
   - {t: ▽, type: trans}
-  - ESP A
-  - ESP E
-  - ESP I
-  - ESP U
-  - ESP IQU
   - {t: ▽, type: trans}
   - {t: ▽, type: trans}
-  - ESP NN
+  - {t: ▽, type: trans}
+  - á
+  - é
+  - í
+  - ú
+  - ¿
+  - {t: ▽, type: trans}
+  - {t: ▽, type: trans}
+  - ñ
   - {t: ▽, type: trans}
   - {t: ▽, type: trans}
   - {t: ▽, type: trans}
@@ -185,25 +185,25 @@ layers:
   - F3
   - F4
   - F11
-  - AC TOGG
+  - AutoCx
   - ⌘
   - ⎇
   - ⇧
   - ^
-  - CW TOGG
-  - WBAK
+  - CapsW
+  - ◀Back
   - F5
   - F6
   - F7
   - F8
-  - WFWD
+  - Fwd▶
   - {t: ▽, type: trans}
   - 'NO'
   - 'NO'
   - 'NO'
   - 'NO'
   - 'NO'
-  - Gui+L
+  - 🔒
   - F9
   - F10
   - F11
