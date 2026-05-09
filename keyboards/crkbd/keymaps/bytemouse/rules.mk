@@ -1,5 +1,14 @@
-OLED_ENABLE        = yes
-OLED_DRIVER        = ssd1306
+# Toggle: pass OLED=yes to compile in the OLED code (Luna animation +
+# status panel, ~5 KB). Default is no — keeps the firmware slim and frees
+# flash for the autocorrect dict.
+#   qmk compile -kb crkbd/rev1 -km bytemouse -e OLED=yes
+OLED ?= no
+ifeq ($(OLED),yes)
+  OLED_ENABLE      = yes
+  OLED_DRIVER      = ssd1306
+else
+  OLED_ENABLE      = no
+endif
 EXTRAKEY_ENABLE    = yes
 RGBLIGHT_ENABLE    = no
 MOUSEKEY_ENABLE    = no
@@ -17,3 +26,4 @@ AUTOCORRECT_ENABLE = yes
 SPACE_CADET_ENABLE = no
 GRAVE_ESC_ENABLE   = no
 MAGIC_ENABLE       = no
+BOOTMAGIC_ENABLE   = no   # not used; QK_BOOT key handles flashing. ~480 B
