@@ -6,11 +6,11 @@ Personal QMK keymap for the [Corne](https://github.com/foostan/crkbd) (a 42-key 
 
 | | Layer | Purpose |
 |---|---|---|
-| 0 | `QWERTY` | Standard US QWERTY (default) |
-| 1 | `KOY` | German Neo-style optimized layout with home-row mods |
-| 2 | `LOWER` | Numbers, navigation, media, copy/paste |
-| 3 | `RAISE` | Programming symbols (German layout) |
-| 4 | `ADJUST` | F-keys, default-layer toggle, Caps Word |
+| 0 | `KOY` | German Neo-style optimized layout with home-row mods (default) |
+| 1 | `LOWER` | Numbers, navigation, media, copy/paste |
+| 2 | `RAISE` | Programming symbols (German layout) |
+| 3 | `ESP` | Spanish accents — `á é í ó ú` on KOY home positions; auto-activates when LOWER + RAISE are held (tri-layer) |
+| 4 | `ADJUST` | F-keys, Caps Word — accessed via `Enter` thumb hold |
 
 `LOWER` and `RAISE` are reached by holding the corresponding thumb key. `ADJUST` is reached by `Enter` (hold) on the left thumb or via `LOWER + ADJUST` chord.
 

@@ -1,49 +1,6 @@
 layout: {qmk_keyboard: crkbd/rev1, layout_name: LAYOUT_split_3x6_3}
 layers:
   QWERTY:
-  - ⭾
-  - Q
-  - W
-  - E
-  - R
-  - T
-  - Y
-  - U
-  - I
-  - O
-  - P
-  - ⌫
-  - ⌘
-  - A
-  - S
-  - D
-  - F
-  - G
-  - H
-  - J
-  - K
-  - L
-  - SCLN
-  - QUOT
-  - ⇧
-  - Z
-  - X
-  - C
-  - V
-  - B
-  - N
-  - M
-  - COMM
-  - DOT
-  - SLSH
-  - ⇧
-  - ^
-  - {t: ⭾, h: ▼Lower}
-  - {t: ⏎, h: ●Adjust}
-  - ␣
-  - {t: ⌫, h: ▲Raise}
-  - {t: ⎋, h: ⎇}
-  KOY:
   - Z
   - K
   - .
@@ -86,7 +43,7 @@ layers:
   - {t: ␣, h: ⇧}
   - {t: ⌫, h: ▲Raise}
   - {t: ⎋, h: ⎇}
-  LOWER:
+  KOY:
   - {t: ▽, type: trans}
   - '1'
   - '2'
@@ -129,7 +86,7 @@ layers:
   - {t: ▽, type: trans}
   - {t: ●Adjust, type: layer}
   - {t: ▽, type: trans}
-  RAISE:
+  LOWER:
   - {t: ▽, type: trans}
   - €
   - _
@@ -172,6 +129,49 @@ layers:
   - {t: ▽, type: trans}
   - {t: ▽, type: trans}
   - {t: ▽, type: trans}
+  RAISE:
+  - {t: ▽, type: trans}
+  - {t: ▽, type: trans}
+  - {t: ▽, type: trans}
+  - ESP O
+  - {t: ▽, type: trans}
+  - {t: ▽, type: trans}
+  - {t: ▽, type: trans}
+  - {t: ▽, type: trans}
+  - {t: ▽, type: trans}
+  - {t: ▽, type: trans}
+  - {t: ▽, type: trans}
+  - {t: ▽, type: trans}
+  - {t: ▽, type: trans}
+  - {t: ▽, type: trans}
+  - ESP A
+  - ESP E
+  - ESP I
+  - ESP U
+  - {t: ▽, type: trans}
+  - {t: ▽, type: trans}
+  - {t: ▽, type: trans}
+  - {t: ▽, type: trans}
+  - {t: ▽, type: trans}
+  - {t: ▽, type: trans}
+  - {t: ▽, type: trans}
+  - {t: ▽, type: trans}
+  - {t: ▽, type: trans}
+  - {t: ▽, type: trans}
+  - {t: ▽, type: trans}
+  - {t: ▽, type: trans}
+  - {t: ▽, type: trans}
+  - {t: ▽, type: trans}
+  - {t: ▽, type: trans}
+  - {t: ▽, type: trans}
+  - {t: ▽, type: trans}
+  - {t: ▽, type: trans}
+  - {t: ▽, type: trans}
+  - {t: ▽, type: trans}
+  - {t: ▽, type: trans}
+  - {t: ▽, type: trans}
+  - {t: ▽, type: trans}
+  - {t: ▽, type: trans}
   ADJUST:
   - F12
   - F1
@@ -201,8 +201,8 @@ layers:
   - 'NO'
   - 'NO'
   - 'NO'
-  - {t: KOY, type: layer}
-  - {t: QWERTY, type: layer}
+  - 'NO'
+  - 'NO'
   - 'NO'
   - F9
   - F10
