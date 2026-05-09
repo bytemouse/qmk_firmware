@@ -40,7 +40,7 @@ layers:
   - ^
   - {t: ⭾, h: ▼Lower}
   - {t: ⏎, h: ●Adjust}
-  - {t: ␣, h: ⇧}
+  - ESPSPACE
   - {t: ⌫, h: ▲Raise}
   - {t: ⎋, h: ⎇}
   KOY:
@@ -98,7 +98,7 @@ layers:
   - '>'
   - '='
   - '&'
-  - {t: ▽, type: trans}
+  - '`'
   - {t: ▽, type: trans}
   - \
   - /
@@ -185,25 +185,25 @@ layers:
   - F3
   - F4
   - F11
-  - {t: ▽, type: trans}
+  - AC TOGG
   - ⌘
   - ⎇
   - ⇧
   - ^
   - CW TOGG
-  - 'NO'
+  - WBAK
   - F5
   - F6
   - F7
   - F8
-  - 'NO'
+  - WFWD
   - {t: ▽, type: trans}
   - 'NO'
   - 'NO'
   - 'NO'
   - 'NO'
   - 'NO'
-  - 'NO'
+  - Gui+L
   - F9
   - F10
   - F11
