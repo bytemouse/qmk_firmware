@@ -1,0 +1,217 @@
+layout: {qmk_keyboard: crkbd/rev1, layout_name: LAYOUT_split_3x6_3}
+layers:
+  QWERTY:
+  - ⭾
+  - Q
+  - W
+  - E
+  - R
+  - T
+  - Y
+  - U
+  - I
+  - O
+  - P
+  - ⌫
+  - ⌘
+  - A
+  - S
+  - D
+  - F
+  - G
+  - H
+  - J
+  - K
+  - L
+  - SCLN
+  - QUOT
+  - ⇧
+  - Z
+  - X
+  - C
+  - V
+  - B
+  - N
+  - M
+  - COMM
+  - DOT
+  - SLSH
+  - ⇧
+  - ^
+  - {t: ⭾, h: ▼Lower}
+  - {t: ⏎, h: ●Adjust}
+  - ␣
+  - {t: ⌫, h: ▲Raise}
+  - {t: ⎋, h: ⎇}
+  KOY:
+  - Z
+  - K
+  - .
+  - O
+  - ','
+  - Y
+  - V
+  - G
+  - C
+  - L
+  - ß
+  - ⌫
+  - ⌘
+  - {t: H, h: ⌘}
+  - {t: A, h: ⎇}
+  - {t: E, h: ⇧}
+  - {t: I, h: ^}
+  - U
+  - D
+  - T
+  - R
+  - N
+  - S
+  - F
+  - ⇧
+  - X
+  - Q
+  - ä
+  - ü
+  - ö
+  - B
+  - P
+  - W
+  - M
+  - J
+  - ⇧
+  - ^
+  - {t: ⭾, h: ▼Lower}
+  - {t: ⏎, h: ●Adjust}
+  - {t: ␣, h: ⇧}
+  - {t: ⌫, h: ▲Raise}
+  - {t: ⎋, h: ⎇}
+  LOWER:
+  - {t: ▽, type: trans}
+  - '1'
+  - '2'
+  - '3'
+  - '4'
+  - '5'
+  - '6'
+  - '7'
+  - '8'
+  - '9'
+  - '0'
+  - ⌦
+  - {t: ▽, type: trans}
+  - $$mdi:volume-high$$
+  - $$mdi:play-pause$$
+  - ⇤
+  - ⇥
+  - ^Z
+  - Z
+  - ◁
+  - ▽
+  - △
+  - ▷
+  - ⎋
+  - {t: ▽, type: trans}
+  - $$mdi:volume-medium$$
+  - $$mdi:skip-previous$$
+  - $$mdi:skip-next$$
+  - ^C
+  - ^V
+  - ²
+  - ⌘
+  - ⇧
+  - $$mdi:printer$$
+  - ¼
+  - {t: ▽, type: trans}
+  - {t: ▽, type: trans}
+  - {t: ▽, type: trans}
+  - {t: ▽, type: trans}
+  - {t: ▽, type: trans}
+  - {t: ●Adjust, type: layer}
+  - {t: ▽, type: trans}
+  RAISE:
+  - {t: ▽, type: trans}
+  - €
+  - _
+  - '['
+  - ']'
+  - ^
+  - '!'
+  - <
+  - '>'
+  - '='
+  - '&'
+  - {t: ▽, type: trans}
+  - {t: ▽, type: trans}
+  - \
+  - /
+  - '{'
+  - '}'
+  - '*'
+  - '?'
+  - (
+  - )
+  - '-'
+  - ':'
+  - '@'
+  - {t: ▽, type: trans}
+  - '#'
+  - $
+  - '|'
+  - '~'
+  - ´
+  - +
+  - '%'
+  - '"'
+  - ''''
+  - ;
+  - {t: ▽, type: trans}
+  - {t: ▽, type: trans}
+  - ⎇
+  - {t: ▽, type: trans}
+  - {t: ▽, type: trans}
+  - {t: ▽, type: trans}
+  - {t: ▽, type: trans}
+  ADJUST:
+  - F12
+  - F1
+  - F2
+  - F3
+  - F4
+  - F5
+  - F6
+  - F1
+  - F2
+  - F3
+  - F4
+  - F11
+  - {t: ▽, type: trans}
+  - ⌘
+  - ⎇
+  - ⇧
+  - ^
+  - 'NO'
+  - 'NO'
+  - F5
+  - F6
+  - F7
+  - F8
+  - 'NO'
+  - {t: ▽, type: trans}
+  - 'NO'
+  - 'NO'
+  - 'NO'
+  - {t: KOY, type: layer}
+  - {t: QWERTY, type: layer}
+  - 'NO'
+  - F9
+  - F10
+  - F11
+  - F12
+  - {t: ▽, type: trans}
+  - {t: ▽, type: trans}
+  - {t: ▽, type: trans}
+  - {t: ▽, type: trans}
+  - {t: ▽, type: trans}
+  - {t: ▽, type: trans}
+  - {t: ▽, type: trans}
