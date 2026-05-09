@@ -1,0 +1,8 @@
+#!/usr/bin/env bash
+# Dispatcher: runs the two keymap hooks in order.
+# Order matters — format keymap.c first, then regenerate the SVG from it.
+set -euo pipefail
+
+HOOK_DIR="$(git rev-parse --show-toplevel)/keyboards/crkbd/keymaps/bytemouse/githooks"
+"$HOOK_DIR/format-keymap"
+"$HOOK_DIR/generate-svg"

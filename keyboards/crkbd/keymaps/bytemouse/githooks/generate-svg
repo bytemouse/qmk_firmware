@@ -1,0 +1,29 @@
+#!/usr/bin/env bash
+# Hook: regenerates keymap.svg + keymap.yaml from keymap.c via keymap-drawer.
+# No-op if keymap.c is not staged.
+set -euo pipefail
+
+KEYMAP_DIR="keyboards/crkbd/keymaps/bytemouse"
+KEYMAP_C="$KEYMAP_DIR/keymap.c"
+DRAW_CONFIG="$KEYMAP_DIR/keymap_drawer.config.yaml"
+KEYMAP_YAML="$KEYMAP_DIR/keymap.yaml"
+KEYMAP_SVG="$KEYMAP_DIR/keymap.svg"
+
+if ! git diff --cached --name-only | grep -qx "$KEYMAP_C"; then
+    exit 0
+fi
+
+if ! command -v qmk >/dev/null || ! command -v keymap >/dev/null; then
+    echo "generate-svg: qmk or keymap-drawer not found; skipping" >&2
+    exit 0
+fi
+
+echo "→ keymap-drawer: regenerating $KEYMAP_SVG"
+TMP_JSON=$(mktemp --suffix=.json)
+trap 'rm -f "$TMP_JSON"' EXIT
+qmk c2json --no-cpp -kb crkbd/rev1 -km bytemouse "$KEYMAP_C" -o "$TMP_JSON" >/dev/null 2>&1
+keymap -c "$DRAW_CONFIG" parse -q "$TMP_JSON" \
+    --layer-names QWERTY KOY LOWER RAISE ADJUST \
+    -o "$KEYMAP_YAML" >/dev/null
+keymap -c "$DRAW_CONFIG" draw "$KEYMAP_YAML" > "$KEYMAP_SVG"
+git add "$KEYMAP_YAML" "$KEYMAP_SVG"

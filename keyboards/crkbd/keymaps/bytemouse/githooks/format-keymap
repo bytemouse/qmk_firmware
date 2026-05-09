@@ -1,0 +1,22 @@
+#!/usr/bin/env bash
+# Hook: rewrites ASCII-art comment blocks in keymap.c via keymapviz.
+# No-op if keymap.c is not staged.
+set -euo pipefail
+
+KEYMAP_DIR="keyboards/crkbd/keymaps/bytemouse"
+KEYMAP_C="$KEYMAP_DIR/keymap.c"
+CONFIG="$KEYMAP_DIR/keymapviz.config"
+
+if ! git diff --cached --name-only | grep -qx "$KEYMAP_C"; then
+    exit 0
+fi
+
+if ! command -v keymapviz >/dev/null; then
+    echo "format-keymap: keymapviz not found; skipping" >&2
+    exit 0
+fi
+
+echo "→ keymapviz: formatting $KEYMAP_C"
+keymapviz -k crkbd -t fancy -c "$CONFIG" -r "$KEYMAP_C" >/dev/null
+rm -f "$KEYMAP_C.bac"
+git add "$KEYMAP_C"
