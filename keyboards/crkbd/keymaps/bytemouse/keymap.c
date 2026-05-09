@@ -208,59 +208,44 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record) {
 #ifdef OLED_ENABLE
 
 oled_rotation_t oled_init_user(oled_rotation_t rotation) {
-    return OLED_ROTATION_270;  // portrait on both halves
+    return OLED_ROTATION_270;  // both halves portrait (32 wide × 128 tall)
 }
 
-// — Master: status panel ————————————————————————————————————————————————————
-static void render_layer_name(void) {
-    oled_write_P(PSTR("LAYER\n"), false);
+// — Helpers ————————————————————————————————————————————————————————————————
+static const char *layer_name(void) {
     switch (get_highest_layer(layer_state | default_layer_state)) {
-        case _QWERTY: oled_write_ln_P(PSTR("QWRTY"), false); break;
-        case _KOY:    oled_write_ln_P(PSTR("KOY  "), false); break;
-        case _LOWER:  oled_write_ln_P(PSTR("LWR  "), false); break;
-        case _RAISE:  oled_write_ln_P(PSTR("RSE  "), false); break;
-        case _ADJUST: oled_write_ln_P(PSTR("ADJ  "), false); break;
-        default:      oled_write_ln_P(PSTR("?    "), false); break;
+        case _QWERTY: return "QWERTY";
+        case _KOY:    return "KOY   ";
+        case _LOWER:  return "LOWER ";
+        case _RAISE:  return "RAISE ";
+        case _ADJUST: return "ADJUST";
+        default:      return "?     ";
     }
 }
 
-static void render_mod_status(void) {
-    uint8_t mods = get_mods() | get_oneshot_mods();
-    oled_write_P(PSTR("MODS\n"), false);
+static void write_mods(uint8_t mods) {
     oled_write_P((mods & MOD_MASK_GUI)   ? PSTR("G") : PSTR("g"), false);
     oled_write_P((mods & MOD_MASK_ALT)   ? PSTR("A") : PSTR("a"), false);
     oled_write_P((mods & MOD_MASK_SHIFT) ? PSTR("S") : PSTR("s"), false);
     oled_write_P((mods & MOD_MASK_CTRL)  ? PSTR("C") : PSTR("c"), false);
-    oled_write_P(PSTR(" \n"), false);
 }
 
-static void render_caps_word(void) {
-    if (is_caps_word_on()) {
-        oled_write_P(PSTR("CAPS\nWORD\n"), false);
-    } else {
-        oled_write_P(PSTR("\n\n"), false);
-    }
+// — Slave: status panel (32×128 portrait, 5 chars × 16 rows) ——————————————
+__attribute__((unused)) static void render_status_panel(void) {
+    oled_set_cursor(0, 0);
+    oled_write_P(PSTR("LAYER\n"), false);
+    oled_write(layer_name(), false);  // 5/6 chars; "ADJUST" wraps but readable
+    oled_write_P(PSTR("\n\n"), false);
+
+    oled_write_P(PSTR("MODS\n"), false);
+    write_mods(get_mods() | get_oneshot_mods());
+    oled_write_P(PSTR(" \n\n"), false);
+
+    oled_write_P(is_caps_word_on() ? PSTR("CAPS\nWORD\n") : PSTR("    \n    \n"), false);
+    oled_write_P(host_keyboard_led_state().caps_lock ? PSTR("\nLOCK") : PSTR("\n    "), false);
 }
 
-static void render_master(void) {
-    render_layer_name();
-    oled_write_P(PSTR("\n"), false);
-    render_mod_status();
-    oled_write_P(PSTR("\n"), false);
-    render_caps_word();
-}
-
-// — Slave: logo + Luna + WPM ———————————————————————————————————————————————
-static void render_logo(void) {
-    static const char PROGMEM crkbd_logo[] = {
-        0x80, 0x81, 0x82, 0x83, 0x84, 0x85, 0x86, 0x87, 0x88, 0x89, 0x8a, 0x8b, 0x8c, 0x8d, 0x8e, 0x8f, 0x90, 0x91, 0x92, 0x93, 0x94,
-        0xa0, 0xa1, 0xa2, 0xa3, 0xa4, 0xa5, 0xa6, 0xa7, 0xa8, 0xa9, 0xaa, 0xab, 0xac, 0xad, 0xae, 0xaf, 0xb0, 0xb1, 0xb2, 0xb3, 0xb4,
-        0xc0, 0xc1, 0xc2, 0xc3, 0xc4, 0xc5, 0xc6, 0xc7, 0xc8, 0xc9, 0xca, 0xcb, 0xcc, 0xcd, 0xce, 0xcf, 0xd0, 0xd1, 0xd2, 0xd3, 0xd4,
-        0
-    };
-    oled_write_P(crkbd_logo, false);
-}
-
+// — Luna animation ————————————————————————————————————————————————————————
 #define LUNA_FRAMES         2
 #define LUNA_FRAME_DURATION 200   // ms per frame
 #define LUNA_SIZE           96    // bytes per frame (32×24 px = 3 rows × 32 cols)
@@ -364,30 +349,41 @@ static void render_luna_sneak(void) {
     oled_write_raw_P(sneak[luna_frame], LUNA_SIZE);
 }
 
-static void render_wpm(void) {
-    char wpm_str[5];
-    uint8_t n = get_current_wpm();
-    wpm_str[0] = '0' + n / 100;
-    wpm_str[1] = '0' + (n / 10) % 10;
-    wpm_str[2] = '0' + n % 10;
-    wpm_str[3] = '\n';
-    wpm_str[4] = '\0';
-    oled_write_P(PSTR("WPM\n"), false);
-    oled_write(wpm_str, false);
+// — Big WPM digits (10 wide × 16 tall, block style) ———————————————————————
+// Each digit: 20 bytes — top page (rows 0..7) then bottom page (rows 8..15).
+static const char PROGMEM big_digits[10][20] = {
+    {0xfe,0xff,0x03,0x03,0x03,0x03,0x03,0x03,0xff,0xfe, 0x7f,0xff,0xc0,0xc0,0xc0,0xc0,0xc0,0xc0,0xff,0x7f},
+    {0x00,0x18,0x0c,0x06,0xff,0xff,0x00,0x00,0x00,0x00, 0x00,0xc0,0xc0,0xc0,0xff,0xff,0xc0,0xc0,0xc0,0x00},
+    {0x06,0x07,0x03,0x03,0x83,0xc3,0xff,0x7e,0x00,0x00, 0xc0,0xe0,0xf0,0xd8,0xcc,0xc6,0xc3,0xc1,0xc0,0x00},
+    {0x03,0x03,0xc3,0xc3,0xc3,0xc3,0xff,0x7e,0x00,0x00, 0xc0,0xc0,0xc1,0xc1,0xc1,0xc1,0xff,0x7e,0x00,0x00},
+    {0xc0,0xe0,0xb0,0x98,0x8c,0xff,0xff,0x80,0x80,0x00, 0x06,0x06,0x06,0x06,0x06,0xff,0xff,0x06,0x06,0x00},
+    {0xff,0xff,0xc3,0xc3,0xc3,0xc3,0xc3,0x83,0x00,0x00, 0xc1,0xc1,0xc1,0xc1,0xc1,0xc1,0xff,0x7e,0x00,0x00},
+    {0xfe,0xff,0xc3,0xc3,0xc3,0xc3,0xc3,0x83,0x00,0x00, 0x7f,0xff,0xc1,0xc1,0xc1,0xc1,0xff,0x7e,0x00,0x00},
+    {0x03,0x03,0x03,0x03,0xc3,0xf3,0x3f,0x0f,0x03,0x00, 0x00,0x00,0xc0,0xf0,0xfc,0x0f,0x03,0x00,0x00,0x00},
+    {0x7e,0xff,0xc3,0xc3,0xc3,0xc3,0xff,0x7e,0x00,0x00, 0x7e,0xff,0xc1,0xc1,0xc1,0xc1,0xff,0x7e,0x00,0x00},
+    {0x7e,0xff,0xc3,0xc3,0xc3,0xc3,0xff,0xff,0x00,0x00, 0xc0,0xc1,0xc1,0xc1,0xc1,0xc1,0xff,0x7f,0x00,0x00},
+};
+
+// — Typing intensity bar — full-width 32 px horizontal at given row ————————
+static void render_wpm_bar(uint8_t row) {
+    uint8_t n    = get_current_wpm();
+    uint8_t fill = (n >= 100) ? 32 : (n * 32 / 100);
+    char bar[32];
+    for (uint8_t i = 0; i < 32; i++) bar[i] = (i < fill) ? 0xfe : 0x80;
+    oled_set_cursor(0, row);
+    oled_write_raw(bar, 32);
 }
 
-static void render_slave(void) {
-    // Top: small Corne logo (3 rows × 21 chars)
-    render_logo();
-
-    // Drive last_keystroke from sustained WPM (master sends it via split sync).
+// — Luna panel: Luna + bar + big WPM (32×128 portrait) —————————————————————
+__attribute__((unused)) static void render_luna_panel(void) {
+    // Drive last_keystroke from sustained WPM.
     static uint8_t prev_wpm = 0;
     if (get_current_wpm() > prev_wpm || get_mods()) {
         last_keystroke = timer_read32();
     }
     prev_wpm = get_current_wpm();
 
-    // Pick which Luna frame to draw based on state.
+    // Tick frame.
     if (timer_elapsed(anim_timer) > LUNA_FRAME_DURATION) {
         anim_timer = timer_read();
         luna_frame ^= 1;
@@ -396,20 +392,70 @@ static void render_slave(void) {
     bool caps = host_keyboard_led_state().caps_lock || is_caps_word_on();
     uint32_t since = timer_elapsed32(last_keystroke);
 
-    oled_set_cursor(0, 8);
+    // Top: layer name (rows 0..1)
+    oled_set_cursor(0, 0);
+    oled_write_P(PSTR("LAYR\n"), false);
+    oled_write(layer_name(), false);
+
+    // Luna in the middle (rows 4..6 = 24 px tall, 32 wide).
+    oled_set_cursor(0, 4);
     if      (get_mods() & MOD_MASK_SHIFT || caps)  render_luna_bark();
     else if (get_mods() & MOD_MASK_CAG)            render_luna_sneak();
     else if (since < LUNA_FRAME_DURATION * 2)      render_luna_run();
     else if (since < LUNA_FRAME_DURATION * 8)      render_luna_walk();
     else                                            render_luna_sit();
 
-    oled_set_cursor(0, 14);
-    render_wpm();
+    // Big WPM digits (rows 9..10 = 16 tall, 3×10 wide centered at col 1).
+    uint8_t n = get_current_wpm();
+    uint8_t d[3] = { n / 100, (n / 10) % 10, n % 10 };
+    oled_set_cursor(1, 9);
+    for (uint8_t i = 0; i < 3; i++) oled_write_raw_P(&big_digits[d[i]][0], 10);
+    oled_set_cursor(1, 10);
+    for (uint8_t i = 0; i < 3; i++) oled_write_raw_P(&big_digits[d[i]][10], 10);
+
+    // "WPM" label below the digits.
+    oled_set_cursor(1, 12);
+    oled_write_P(PSTR(" WPM "), false);
+
+    // Intensity bar at row 14.
+    render_wpm_bar(14);
 }
 
+// — OLED size diagnostic — define OLED_DIAG in config.h to activate ————————
+// Flash with this on, look at both screens; the values printed are the
+// compile-time OLED_DISPLAY_WIDTH / HEIGHT QMK is driving. If those don't
+// match what you physically see, change the OLED_DISPLAY_* define accordingly.
+#ifdef OLED_DIAG
+#  define DIAG_S2(x) #x
+#  define DIAG_S(x)  DIAG_S2(x)
+static void render_oled_diag(void) {
+    oled_set_cursor(0, 0);
+    oled_write_P(PSTR("W:" DIAG_S(OLED_DISPLAY_WIDTH) "\n"), false);
+    oled_write_P(PSTR("H:" DIAG_S(OLED_DISPLAY_HEIGHT) "\n"), false);
+    oled_write_P(PSTR("rows" "\n"), false);
+    char r[3] = { '0' + OLED_DISPLAY_HEIGHT / 8 / 10, '0' + (OLED_DISPLAY_HEIGHT / 8) % 10, '\0' };
+    oled_write(r, false);
+    oled_write_P(PSTR("\ncols\n"), false);
+    char c[4] = { '0' + OLED_DISPLAY_WIDTH / 100, '0' + (OLED_DISPLAY_WIDTH / 10) % 10, '0' + OLED_DISPLAY_WIDTH % 10, '\0' };
+    oled_write(c, false);
+    // Border: top row + bottom row of full-width 0xff bytes
+    char border[OLED_DISPLAY_WIDTH];
+    for (uint16_t i = 0; i < OLED_DISPLAY_WIDTH; i++) border[i] = 0xff;
+    oled_set_cursor(0, 0);
+    oled_write_raw(border, OLED_DISPLAY_WIDTH);
+    oled_set_cursor(0, OLED_DISPLAY_HEIGHT / 8 - 1);
+    oled_write_raw(border, OLED_DISPLAY_WIDTH);
+}
+#endif
+
 bool oled_task_user(void) {
-    if (is_keyboard_master()) render_master();
-    else                      render_slave();
+#ifdef OLED_DIAG
+    render_oled_diag();
+#else
+    // Master shows Luna + WPM; slave shows the status panel.
+    if (is_keyboard_master()) render_luna_panel();
+    else                      render_status_panel();
+#endif
     return false;
 }
 #endif // OLED_ENABLE
